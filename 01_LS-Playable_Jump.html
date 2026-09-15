@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<!-- Lotto Scanner Playable Ad · Jump · Stand v5, 15.09.2026
+<!-- Lotto Scanner Playable Ad · Jump · Stand v5 + Touch-Fix + Themensong, 15.09.2026
      Quelle: NextLotto/projects/Playable Ad/ · Versionshistorie im README + _archiv/
      Eine einzige Datei, keine externen Requests. Doppelklick genügt. -->
 <html lang="de">
@@ -376,7 +376,12 @@ const playSeconds = () => mode === 'play' ? playTicks/60 : 0;
 /* ==========================================================================
    INPUT — drag anywhere; pointer x relative to the canvas box
    ========================================================================== */
+// Taps auf die Overlays und den Mute-Knopf duerfen NICHT abgefangen werden:
+// ein preventDefault auf touchstart unterdrueckt den synthetischen Klick, dann
+// reagiert "Los geht's" auf dem Handy nicht mehr. (Bug, gemeldet 15.09.2026)
+const inUI = e => !!(e.target && e.target.closest && e.target.closest('.ov,.mute'));
 function ptr(e, type) {
+  if (inUI(e)) { if (type === 'up') pointer.active = false; return; }
   if (e.cancelable) e.preventDefault();
   const cx = e.touches && e.touches.length ? e.touches[0].clientX : e.clientX;
   if (cx == null) { if (type === 'up') pointer.active = false; return; }
@@ -529,7 +534,7 @@ function collect(c) {
   for (const k in CONFIG.MILESTONES) if (!milestonesHit[k] && score >= +k && score < CONFIG.TARGET) { milestonesHit[k] = true; showToast(CONFIG.MILESTONES[k]); Audio.milestone(); }
   if (score >= CONFIG.TARGET) {
     score = CONFIG.TARGET; updateScoreUI(true);
-    mode = 'winning'; winT = 0; combo.classList.remove('on'); tut.classList.remove('on'); toast.classList.remove('on'); clearTimeout(toastTimer);
+    mode = 'winning'; Audio.duck(true); winT = 0; combo.classList.remove('on'); tut.classList.remove('on'); toast.classList.remove('on'); clearTimeout(toastTimer);
     winPos = { x: player.x, y: player.y }; hitstop = 0;
   } else updateScoreUI(true);
 }
@@ -798,8 +803,23 @@ function drawPlayer(cx, cy) {
    AUDIO — tiny WebAudio synth (no assets). Subtle by design: no strobe-like cues.
    ========================================================================== */
 const Audio = (() => {
-  let ac = null, muted = false, master;
-  const ensure = () => { if (!ac) { try { ac = new (window.AudioContext || window.webkitAudioContext)(); master = ac.createGain(); master.gain.value = 0.35; master.connect(ac.destination); } catch (e) { ac = null; } } if (ac && ac.state === 'suspended') ac.resume(); return !!ac && !muted; };
+  let ac = null, muted = false, master, musicGain, padFilter, noiseBuf = null;
+  let musicTimer = null, step = 0, nextT = 0, ducked = false;
+
+  const ensure = () => {
+    if (!ac) {
+      try {
+        ac = new (window.AudioContext || window.webkitAudioContext)();
+        master = ac.createGain(); master.gain.value = 0.35; master.connect(ac.destination);
+        musicGain = ac.createGain(); musicGain.gain.value = 0.0001; musicGain.connect(ac.destination);
+        padFilter = ac.createBiquadFilter(); padFilter.type = 'lowpass';
+        padFilter.frequency.value = 850; padFilter.Q.value = 0.7; padFilter.connect(musicGain);
+      } catch (e) { ac = null; }
+    }
+    if (ac && ac.state === 'suspended') ac.resume();
+    return !!ac && !muted;
+  };
+
   const tone = (f, type, dur, vol, at = 0, slide = 0) => {
     if (!ensure()) return;
     const o = ac.createOscillator(), g = ac.createGain(), t0 = ac.currentTime + at;
@@ -807,6 +827,76 @@ const Audio = (() => {
     g.gain.setValueAtTime(0.0001, t0); g.gain.exponentialRampToValueAtTime(vol, t0 + 0.012); g.gain.exponentialRampToValueAtTime(0.0001, t0 + dur);
     o.connect(g); g.connect(master); o.start(t0); o.stop(t0 + dur + 0.02);
   };
+
+  /* ======================================================================
+     THEMENSONG — 4-Takt-Loop in a-Moll (Am – F – C – G), 112 BPM.
+     Komplett im Code erzeugt, keine Audiodatei: die Spiele bleiben je EINE
+     Datei ohne externe Requests. Bewusst zurueckhaltend gemischt, damit die
+     Spielgeraeusche darueber liegen und es kein aufdringlicher Sound-Cue ist
+     (GlueStV: keine Trigger in Rich-Media). Mute-Knopf schaltet alles ab.
+     ====================================================================== */
+  const BPM = 112, SIXTEENTH = 60 / BPM / 4, STEPS = 64;
+  const CHORDS = [
+    { sub: 55.00, bass: 110.00, pad: [220.00, 261.63, 329.63] },  // Am
+    { sub: 43.65, bass:  87.31, pad: [174.61, 220.00, 261.63] },  // F
+    { sub: 65.41, bass: 130.81, pad: [261.63, 329.63, 392.00] },  // C
+    { sub: 49.00, bass:  98.00, pad: [196.00, 246.94, 293.66] },  // G
+  ];
+  const BASS_HITS = [0, 6, 8, 11, 14];   // Groove-Positionen im Takt (16tel)
+  const ARP_SEQ   = [0, 1, 2, 1, 2, 0, 1, 2];
+
+  function mtone(f, type, dur, vol, t, attack, dest, detune) {
+    const o = ac.createOscillator(), g = ac.createGain();
+    o.type = type; o.frequency.setValueAtTime(f, t);
+    if (detune) o.detune.setValueAtTime(detune, t);
+    g.gain.setValueAtTime(0.0001, t);
+    g.gain.exponentialRampToValueAtTime(vol, t + (attack || 0.008));
+    g.gain.exponentialRampToValueAtTime(0.0001, t + dur);
+    o.connect(g); g.connect(dest || musicGain); o.start(t); o.stop(t + dur + 0.02);
+  }
+  function mkick(t) {
+    const o = ac.createOscillator(), g = ac.createGain();
+    o.type = 'sine'; o.frequency.setValueAtTime(115, t); o.frequency.exponentialRampToValueAtTime(44, t + 0.11);
+    g.gain.setValueAtTime(0.42, t); g.gain.exponentialRampToValueAtTime(0.0001, t + 0.20);
+    o.connect(g); g.connect(musicGain); o.start(t); o.stop(t + 0.24);
+  }
+  function mhat(t, vol) {
+    if (!noiseBuf) {
+      noiseBuf = ac.createBuffer(1, Math.floor(ac.sampleRate * 0.2), ac.sampleRate);
+      const d = noiseBuf.getChannelData(0);
+      for (let i = 0; i < d.length; i++) d[i] = Math.random() * 2 - 1;
+    }
+    const s = ac.createBufferSource(); s.buffer = noiseBuf;
+    const f = ac.createBiquadFilter(); f.type = 'highpass'; f.frequency.value = 7000;
+    const g = ac.createGain();
+    g.gain.setValueAtTime(vol, t); g.gain.exponentialRampToValueAtTime(0.0001, t + 0.05);
+    s.connect(f); f.connect(g); g.connect(musicGain); s.start(t); s.stop(t + 0.07);
+  }
+
+  function playStep(i, t) {
+    const bar = (i >> 4) & 3, c = CHORDS[bar], inBar = i & 15;
+    if (inBar === 0) {
+      mtone(c.sub, 'sine', 2.0, 0.30, t, 0.03);                                  // Sub
+      c.pad.forEach((f, k) => {                                                  // Flaeche, zwei verstimmte Saegezaehne
+        mtone(f, 'sawtooth', 2.1, 0.055, t, 0.35, padFilter, -6 + k);
+        mtone(f, 'sawtooth', 2.1, 0.055, t, 0.35, padFilter,  7 - k);
+      });
+    }
+    if (BASS_HITS.indexOf(inBar) !== -1) mtone(c.bass, 'triangle', 0.20, 0.16, t, 0.006);
+    mtone(c.pad[ARP_SEQ[i & 7]] * ((i & 8) ? 2 : 1), 'square', 0.11, 0.028, t);  // Arpeggio
+    if (inBar === 0 || inBar === 8) mkick(t);
+    if ((inBar & 3) === 2) mhat(t, inBar === 6 ? 0.055 : 0.035);
+  }
+
+  function scheduler() {
+    if (!ac || muted) return;
+    while (nextT < ac.currentTime + 0.25) {
+      playStep(step % STEPS, nextT);
+      nextT += SIXTEENTH;
+      step++;
+    }
+  }
+
   return {
     unlock: ensure,
     coin: n => { const f = 880 * Math.pow(1.06, Math.min(n, 8)); tone(f, 'sine', 0.16, 0.5); tone(f*1.5, 'triangle', 0.22, 0.25, 0.03); },
@@ -816,6 +906,32 @@ const Audio = (() => {
     fail: () => { tone(330, 'triangle', 0.4, 0.3, 0, 0.5); },
     hit: () => { tone(1200, 'sine', 0.12, 0.35, 0, 0.6); },
     win: () => { tone(70, 'sine', 0.6, 0.6, 0, 0.5); tone(140, 'triangle', 0.35, 0.3, 0, 0.4); [523, 659, 784, 1046, 1318].forEach((f,i) => tone(f, 'triangle', 0.5, 0.35, 0.12 + i*0.09)); tone(1568, 'sine', 0.9, 0.25, 0.6); },
+    // Musik startet erst nach der ersten Nutzergeste (Autoplay-Sperre der Browser)
+    music: (on) => {
+      if (!ensure()) return;
+      if (on) {
+        if (musicTimer) return;
+        step = 0; nextT = ac.currentTime + 0.12; ducked = false;
+        musicGain.gain.cancelScheduledValues(ac.currentTime);
+        musicGain.gain.setValueAtTime(0.0001, ac.currentTime);
+        musicGain.gain.exponentialRampToValueAtTime(0.16, ac.currentTime + 1.2);
+        scheduler();
+        musicTimer = setInterval(scheduler, 40);
+      } else if (musicTimer) {
+        clearInterval(musicTimer); musicTimer = null;
+        musicGain.gain.cancelScheduledValues(ac.currentTime);
+        musicGain.gain.setValueAtTime(musicGain.gain.value, ac.currentTime);
+        musicGain.gain.exponentialRampToValueAtTime(0.0001, ac.currentTime + 0.4);
+      }
+    },
+    // Waehrend der Schluss-Sequenz leiser, damit die Fanfare Platz hat
+    duck: (on) => {
+      if (!ac || !musicGain || ducked === on) return;
+      ducked = on;
+      musicGain.gain.cancelScheduledValues(ac.currentTime);
+      musicGain.gain.setValueAtTime(Math.max(0.0002, musicGain.gain.value), ac.currentTime);
+      musicGain.gain.exponentialRampToValueAtTime(on ? 0.035 : 0.16, ac.currentTime + 0.35);
+    },
     toggle: () => { muted = !muted; if (muted && ac) ac.suspend(); else if (ac) ac.resume(); return muted; },
   };
 })();
@@ -829,6 +945,7 @@ function startGame() {
   hud.classList.add('on'); tut.classList.add('on');
 }
 function endGame(reason) {
+  Audio.music(false);
   mode = reason; hud.classList.remove('on'); tut.classList.remove('on'); combo.classList.remove('on'); toast.classList.remove('on'); clearTimeout(toastTimer);
   if (reason === 'win') { ovWin.classList.add('on'); countUp(winSum, 120000000, 1400); }
   else { overSum.textContent = score + ' Mio. €'; ovOver.classList.add('on'); }
@@ -856,7 +973,7 @@ function cta(e) {
   window.open(CONFIG.CLICK_URL, '_blank');
 }
 $('winCta').addEventListener('click', cta); $('overCta').addEventListener('click', cta);
-const begin = e => { if (e) e.stopPropagation(); Audio.unlock(); startGame(); };
+const begin = e => { if (e) e.stopPropagation(); Audio.unlock(); Audio.music(true); startGame(); };
 $('startBtn').addEventListener('click', begin);
 ovStart.addEventListener('click', begin);
 $('winAgain').addEventListener('click', e => { e.stopPropagation(); begin(); });
