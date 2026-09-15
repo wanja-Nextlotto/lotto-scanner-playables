@@ -82,6 +82,21 @@ footer{font-size:13px;color:var(--text-dim);border-top:1px solid var(--line);pad
   padding:8px 12px;border-radius:999px;cursor:pointer;transition:background .15s ease,color .15s ease}
 .lang button.on{background:var(--yellow);color:var(--ink)}
 .lang button:focus-visible{outline:2px solid var(--yellow);outline-offset:2px}
+
+/* Sprachumschalter */
+.head-row{display:flex;align-items:flex-start;justify-content:space-between;gap:16px}
+.lang{display:inline-flex;background:var(--surface);border:1px solid var(--line);border-radius:999px;padding:3px;flex:none}
+.lang button{font:800 12px/1 var(--head);letter-spacing:.06em;color:var(--text-dim);background:none;border:0;
+  padding:8px 12px;border-radius:999px;cursor:pointer;transition:background .15s ease,color .15s ease}
+.lang button.on{background:var(--yellow);color:var(--ink)}
+.variants{display:flex;flex-wrap:wrap;gap:8px;margin-top:2px}
+.game .open{text-decoration:none;background:rgba(252,197,22,.12);border:1px solid rgba(252,197,22,.45);
+  border-radius:999px;padding:9px 13px;transition:background .15s ease,border-color .15s ease}
+.game .open:hover,.game .open:focus-visible{background:var(--yellow);color:var(--ink)}
+.game .open.b{background:rgba(85,55,229,.16);border-color:rgba(85,55,229,.5);color:#BBA8FF}
+.game .open.b:hover,.game .open.b:focus-visible{background:var(--blue);color:#fff}
+.game{transition:border-color .18s ease,background .18s ease}
+.lang button:focus-visible{outline:2px solid var(--yellow);outline-offset:2px}
 </style>
 </head>
 <body>
@@ -103,30 +118,47 @@ footer{font-size:13px;color:var(--text-dim);border-top:1px solid var(--line);pad
   </header>
 
   <div class="games">
-      <a class="game" href="01_LS-Playable_Jump.html">
+      <div class="game">
         <div class="top"><h2 data-i18n="jump.name">Jump</h2><span class="dur" data-i18n="jump.dur">ca. 15 Sek.</span></div>
         <p data-i18n="jump.text">Von Kachel zu Kachel nach oben. Ab 6 Mio. liegt ein ×2-Badge bereit, das man einsammeln muss, später ein ×3. Danach zählt jeder Coin doppelt bzw. dreifach.</p>
         <span class="ctrl" data-i18n="jump.ctrl">Ziehen nach links und rechts</span>
-        <span class="open"><span data-i18n="play">Spielen</span> <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
-      </a>
-      <a class="game" href="02_LS-Playable_Runner.html">
+        <div class="variants">
+          <a class="open" href="01_LS-Playable_Jump.html"><span data-i18n="play.a">Mit Intro</span> <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+          <a class="open b" href="01_LS-Playable_Jump_B-Direkt.html"><span data-i18n="play.b">Direkt rein</span> <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+        </div>
+      </div>
+      <div class="game">
         <div class="top"><h2 data-i18n="runner.name">Runner</h2><span class="dur" data-i18n="runner.dur">ca. 15 Sek.</span></div>
         <p data-i18n="runner.text">Drei Spuren durch die nächtliche Stadt. Über Pylonen springen, Absperrungen und Lieferwagen ausweichen, Turbo-Pads mitnehmen.</p>
         <span class="ctrl" data-i18n="runner.ctrl">Wischen für die Spur, Tippen für den Sprung</span>
-        <span class="open"><span data-i18n="play">Spielen</span> <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
-      </a>
-      <a class="game" href="03_LS-Playable_Crossing.html">
+        <div class="variants">
+          <a class="open" href="02_LS-Playable_Runner.html"><span data-i18n="play.a">Mit Intro</span> <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+          <a class="open b" href="02_LS-Playable_Runner_B-Direkt.html"><span data-i18n="play.b">Direkt rein</span> <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+        </div>
+      </div>
+      <div class="game">
         <div class="top"><h2 data-i18n="crossing.name">Straße</h2><span class="dur" data-i18n="crossing.dur">ca. 10 Sek.</span></div>
         <p data-i18n="crossing.text">Über die befahrene Straße, drei Lottoscheine unterwegs scannen und heil auf der anderen Seite ankommen. Autos sind tabu.</p>
         <span class="ctrl" data-i18n="crossing.ctrl">Tippen für vorwärts, Wischen zur Seite</span>
-        <span class="open"><span data-i18n="play">Spielen</span> <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
-      </a>
-      <a class="game" href="04_LS-Playable_Scan.html">
+        <div class="variants">
+          <a class="open" href="03_LS-Playable_Crossing.html"><span data-i18n="play.a">Mit Intro</span> <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+          <a class="open b" href="03_LS-Playable_Crossing_B-Direkt.html"><span data-i18n="play.b">Direkt rein</span> <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+        </div>
+      </div>
+      <div class="game">
         <div class="top"><h2 data-i18n="scan.name">Scanner</h2><span class="dur" data-i18n="scan.dur">ca. 15 Sek.</span></div>
         <p data-i18n="scan.text">Der Scanner saugt die fallenden Lottoscheine ein. Kaffeebecher und Regenwolke lässt man besser durch, die machen den Schein kaputt.</p>
         <span class="ctrl" data-i18n="scan.ctrl">Ziehen nach links und rechts</span>
-        <span class="open"><span data-i18n="play">Spielen</span> <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
-      </a>
+        <div class="variants">
+          <a class="open" href="04_LS-Playable_Scan.html"><span data-i18n="play.a">Mit Intro</span> <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+          <a class="open b" href="04_LS-Playable_Scan_B-Direkt.html"><span data-i18n="play.b">Direkt rein</span> <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+        </div>
+      </div>
+  </div>
+
+  <div class="note">
+    <h3 data-i18n="ab.h">Zwei Fassungen je Spiel (A/B-Test)</h3>
+    <p data-i18n="ab.p"><b>Mit Intro</b> zeigt erst den Startscreen mit Erklärung, so wie bisher. <b>Direkt rein</b> wirft dich sofort ins Spiel, ohne Vorschaltung. Die Frage dahinter: Springen Leute ab, wenn sie vorher sehen, dass es Werbung ist? Beide Fassungen sind sonst identisch.</p>
   </div>
 
   <div class="note">
@@ -173,6 +205,10 @@ footer{font-size:13px;color:var(--text-dim);border-top:1px solid var(--line);pad
   "h1": "Playable Ads testen",
   "lede": "Vier Minispiele für Meta und Moloco. Tippe eins an, es öffnet sich direkt im Browser und ist sofort spielbar. Ziel ist in allen vieren dasselbe: <b>120 Mio. € sammeln</b>, dann kommt der CTA-Screen.",
   "play": "Spielen",
+  "play.a": "Mit Intro",
+  "play.b": "Direkt rein",
+  "ab.h": "Zwei Fassungen je Spiel (A/B-Test)",
+  "ab.p": "<b>Mit Intro</b> zeigt erst den Startscreen mit Erklärung, so wie bisher. <b>Direkt rein</b> wirft dich sofort ins Spiel, ohne Vorschaltung. Die Frage dahinter: Springen Leute ab, wenn sie vorher sehen, dass es Werbung ist? Beide Fassungen sind sonst identisch.",
   "jump.name": "Jump",
   "jump.dur": "ca. 15 Sek.",
   "jump.text": "Von Kachel zu Kachel nach oben. Ab 6 Mio. liegt ein ×2-Badge bereit, das man einsammeln muss, später ein ×3. Danach zählt jeder Coin doppelt bzw. dreifach.",
@@ -209,6 +245,10 @@ footer{font-size:13px;color:var(--text-dim);border-top:1px solid var(--line);pad
   "h1": "Test the playable ads",
   "lede": "Four mini-games for Meta and Moloco. Tap one, it opens straight in the browser and is playable right away. All four share the same goal: <b>collect €120M</b>, then the CTA screen appears.",
   "play": "Play",
+  "play.a": "With intro",
+  "play.b": "Straight in",
+  "ab.h": "Two versions per game (A/B test)",
+  "ab.p": "<b>With intro</b> shows the start screen and the explanation first, as before. <b>Straight in</b> drops you into the game immediately, no lead-in. The question behind it: do people bail out once they see it is an ad? Everything else is identical between the two.",
   "jump.name": "Jump",
   "jump.dur": "approx. 15 sec.",
   "jump.text": "Hop your way up from tile to tile. From €6M a ×2 badge appears that you have to grab, later a ×3. After that every coin counts double or triple.",

@@ -218,7 +218,7 @@ body{display:flex;align-items:center;justify-content:center}
    ========================================================================== */
 const CONFIG = {
   LANG: 'auto',            // 'auto' | 'de' | 'en'
-  DIRECT_START: false,  // true = ohne Startscreen direkt ins Spiel (A/B-Test)
+  DIRECT_START: true,  // true = ohne Startscreen direkt ins Spiel (A/B-Test)
 
   CLICK_URL: 'https://lottoscanner.de/app',   // fallback if no ad-network SDK injects its own CTA handler
   TARGET: 120,                                 // Mio. € to collect
@@ -1194,6 +1194,11 @@ $('mute').addEventListener('touchstart', e => e.stopPropagation(), { passive:tru
 resize(); reset(); mode = 'idle';
 const boot = () => { if (!raf) raf = requestAnimationFrame(loop); };
 if (document.fonts && document.fonts.ready) document.fonts.ready.then(boot); else boot();
+/* A/B-Variante B: ohne Intro direkt ins Spiel */
+ovStart.classList.remove('on');
+const kickOff = () => { if (mode === 'idle') begin(); };
+if (document.fonts && document.fonts.ready) document.fonts.ready.then(kickOff); else kickOff();
+setTimeout(kickOff, 900);
 setTimeout(boot, 800);
 
 // debug/test hook (harmless in production)

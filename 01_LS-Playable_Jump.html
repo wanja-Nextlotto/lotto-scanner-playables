@@ -146,11 +146,11 @@ body{display:flex;align-items:center;justify-content:center}
   <!-- HUD -->
   <div class="hud" id="hud">
     <div class="card score">
-      <div class="lbl">Gesammelt</div>
-      <div class="goal">Ziel <b>120 Mio. €</b></div>
-      <div class="num" id="scoreNum"><span id="scoreVal">0</span><span class="unit">Mio. €</span></div>
+      <div class="lbl" data-i18n="hud.label">Gesammelt</div>
+      <div class="goal" data-i18n="hud.goal">Ziel <b>120 Mio. €</b></div>
+      <div class="num" id="scoreNum"><span id="scoreVal">0</span><span class="unit" data-i18n="hud.unit">Mio. €</span></div>
       <div class="bar"><i id="bar"></i><s style="left:25%"></s><s style="left:50%"></s><s style="left:75%"></s></div>
-      <div class="lvl" id="lvl">×1</div>
+      <div class="lvl" id="lvl" data-i18n="lvl.0">×1</div>
     </div>
     <div class="card logo" aria-hidden="true">
       <svg viewBox="0 0 1024 1024"><path fill="#1C1C1C" d="M747.377573,747.394219 L747.377573,642.774566 L642.75792,642.774566 L642.75792,747.394219 L538.154913,747.394219 L538.154913,569.546358 C538.154913,552.20685 552.20685,538.154913 569.532486,538.154913 L753.039962,538.154913 C807.69409,538.154913 852,582.460823 852,637.114951 L852,753.053834 C852,807.707962 807.69409,852 753.039962,852 L642.774566,852 L642.774566,747.394219 L747.377573,747.394219 Z M381.225434,538.154913 L381.225434,642.774566 L485.845087,642.774566 L485.845087,753.053834 C485.845087,807.707962 441.539177,852 386.885049,852 L270.960038,852 C216.30591,852 172,807.707962 172,753.053834 L172,637.114951 C172,582.460823 216.30591,538.154913 270.960038,538.154913 L381.225434,538.154913 Z M753.039962,172 C807.69409,172 852,216.30591 852,270.960038 L852,381.239306 L747.391444,381.239306 L747.391444,276.619653 L642.771792,276.619653 L642.771792,381.239306 L747.380347,381.239306 L747.380347,485.845087 L569.532486,485.845087 C552.20685,485.845087 538.154913,471.79315 538.154913,454.467514 L538.154913,270.960038 C538.154913,216.30591 582.460823,172 637.114951,172 L753.039962,172 Z M386.885049,172 C441.539177,172 485.845087,216.30591 485.845087,270.960038 L485.845087,454.467514 C485.845087,471.79315 471.79315,485.845087 454.467514,485.845087 L270.960038,485.845087 C216.30591,485.845087 172,441.553049 172,386.898921 L172,276.619653 L276.603007,276.619653 L276.603007,381.239306 L381.22266,381.239306 L381.22266,276.619653 L276.619653,276.619653 L276.619653,172 L386.885049,172 Z"/></svg>
@@ -158,7 +158,7 @@ body{display:flex;align-items:center;justify-content:center}
   </div>
   <div class="combo" id="combo">×2 Combo</div>
   <div class="toast" id="toast"></div>
-  <div class="tut" id="tut"><span class="hand"><svg viewBox="0 0 24 24" fill="none" stroke="#FCFBFA" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M8 13V5.5a1.5 1.5 0 0 1 3 0V12"/><path d="M11 11.5v-2a1.5 1.5 0 0 1 3 0V12"/><path d="M14 10.5a1.5 1.5 0 0 1 3 0V12"/><path d="M17 11.5a1.5 1.5 0 0 1 3 0V16a6 6 0 0 1-6 6h-2a6 6 0 0 1-5-2.7L4.3 15.3a1.5 1.5 0 0 1 2.4-1.8L8 15"/></svg></span><span>Ziehen zum Steuern</span></div>
+  <div class="tut" id="tut"><span class="hand"><svg viewBox="0 0 24 24" fill="none" stroke="#FCFBFA" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M8 13V5.5a1.5 1.5 0 0 1 3 0V12"/><path d="M11 11.5v-2a1.5 1.5 0 0 1 3 0V12"/><path d="M14 10.5a1.5 1.5 0 0 1 3 0V12"/><path d="M17 11.5a1.5 1.5 0 0 1 3 0V16a6 6 0 0 1-6 6h-2a6 6 0 0 1-5-2.7L4.3 15.3a1.5 1.5 0 0 1 2.4-1.8L8 15"/></svg></span><span data-i18n="tut">Ziehen zum Steuern</span></div>
 
   <button class="mute" id="mute" type="button" aria-label="Sound an/aus">
     <svg class="on" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M11 5 6 9H3v6h3l5 4V5z" fill="currentColor"/><path d="M15.5 8.5a5 5 0 0 1 0 7"/><path d="M18.5 5.5a9 9 0 0 1 0 13"/></svg>
@@ -167,7 +167,7 @@ body{display:flex;align-items:center;justify-content:center}
 
   <!-- START -->
   <div class="ov on" id="start">
-    <div class="kicker">Lotto Scanner · Mini-Game</div>
+    <div class="kicker" data-i18n="kicker">Lotto Scanner · Mini-Game</div>
     <div class="hero bob" aria-hidden="true">
       <div class="ring"></div>
       <svg viewBox="0 0 200 200"><defs><linearGradient id="hg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#FFE27A"/><stop offset=".55" stop-color="#FCC516"/><stop offset="1" stop-color="#E9AE00"/></linearGradient></defs>
@@ -175,30 +175,30 @@ body{display:flex;align-items:center;justify-content:center}
         <g transform="translate(20 20) scale(0.15625)"><path fill="#1C1C1C" d="M747.377573,747.394219 L747.377573,642.774566 L642.75792,642.774566 L642.75792,747.394219 L538.154913,747.394219 L538.154913,569.546358 C538.154913,552.20685 552.20685,538.154913 569.532486,538.154913 L753.039962,538.154913 C807.69409,538.154913 852,582.460823 852,637.114951 L852,753.053834 C852,807.707962 807.69409,852 753.039962,852 L642.774566,852 L642.774566,747.394219 L747.377573,747.394219 Z M381.225434,538.154913 L381.225434,642.774566 L485.845087,642.774566 L485.845087,753.053834 C485.845087,807.707962 441.539177,852 386.885049,852 L270.960038,852 C216.30591,852 172,807.707962 172,753.053834 L172,637.114951 C172,582.460823 216.30591,538.154913 270.960038,538.154913 L381.225434,538.154913 Z M753.039962,172 C807.69409,172 852,216.30591 852,270.960038 L852,381.239306 L747.391444,381.239306 L747.391444,276.619653 L642.771792,276.619653 L642.771792,381.239306 L747.380347,381.239306 L747.380347,485.845087 L569.532486,485.845087 C552.20685,485.845087 538.154913,471.79315 538.154913,454.467514 L538.154913,270.960038 C538.154913,216.30591 582.460823,172 637.114951,172 L753.039962,172 Z M386.885049,172 C441.539177,172 485.845087,216.30591 485.845087,270.960038 L485.845087,454.467514 C485.845087,471.79315 471.79315,485.845087 454.467514,485.845087 L270.960038,485.845087 C216.30591,485.845087 172,441.553049 172,386.898921 L172,276.619653 L276.603007,276.619653 L276.603007,381.239306 L381.22266,381.239306 L381.22266,276.619653 L276.619653,276.619653 L276.619653,172 L386.885049,172 Z"/></g>
       </svg>
     </div>
-    <h1>Spring dich zu <em>120&nbsp;Mio.&nbsp;€</em></h1>
-    <p class="sub">Ziehe nach links und rechts, lande auf den Kacheln und sammle die Mio.-Coins.</p>
-    <button class="btn pulse" id="startBtn" type="button">Los geht's <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></button>
-    <div class="tap">Tippe irgendwo, um zu starten</div>
+    <h1 data-i18n="start.h1">Spring dich zu <em>120&nbsp;Mio.&nbsp;€</em></h1>
+    <p class="sub" data-i18n="start.sub">Ziehe nach links und rechts, lande auf den Kacheln und sammle die Mio.-Coins.</p>
+    <button class="btn pulse" id="startBtn" type="button"><span data-i18n="start.btn">Los geht's</span> <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></button>
+    <div class="tap" data-i18n="start.tap">Tippe irgendwo, um zu starten</div>
   </div>
 
   <!-- WIN -->
   <div class="ov" id="win">
-    <div class="kicker">Geschafft</div>
-    <h1>Du hast den Zähler <em>vollgemacht</em></h1>
+    <div class="kicker" data-i18n="win.kicker">Geschafft</div>
+    <h1 data-i18n="win.h1">Du hast den Zähler <em>vollgemacht</em></h1>
     <div class="bigsum"><span id="winSum">0</span><small>€</small></div>
-    <p class="sub">Beim echten Eurojackpot zählt kein Geschick, nur Glück. Hol dir die App und tippe mit.</p>
-    <a class="btn pulse cta" id="winCta" href="#" rel="noopener">Jetzt App laden <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 4v12M6 10l6 6 6-6"/><path d="M4 20h16"/></svg></a>
-    <button class="btn ghost" id="winAgain" type="button">Nochmal springen</button>
-    <p class="luck">Chance auf den Eurojackpot: 1 : 140 Mio.</p>
+    <p class="sub" data-i18n="win.sub">Beim echten Eurojackpot zählt kein Geschick, nur Glück. Hol dir die App und tippe mit.</p>
+    <a class="btn pulse cta" id="winCta" href="#" rel="noopener"><span data-i18n="win.cta">Jetzt App laden</span> <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 4v12M6 10l6 6 6-6"/><path d="M4 20h16"/></svg></a>
+    <button class="btn ghost" id="winAgain" type="button" data-i18n="win.again">Nochmal springen</button>
+    <p class="luck" data-i18n="luck">Chance auf den Eurojackpot: 1 : 140 Mio.</p>
   </div>
 
   <!-- OVER -->
   <div class="ov" id="over">
-    <div class="kicker">Fast</div>
-    <h1>Starke <em id="overSum">0 Mio. €</em> gesammelt</h1>
-    <p class="sub">Der Jackpot wartet trotzdem. In der App tippst du in Sekunden mit.</p>
-    <button class="btn pulse" id="overAgain" type="button">Nochmal versuchen</button>
-    <a class="btn ghost cta" id="overCta" href="#" rel="noopener">Direkt zur App</a>
+    <div class="kicker" data-i18n="over.kicker">Fast</div>
+    <h1 data-i18n="over.h1">Starke <em id="overSum">0 Mio. €</em> gesammelt</h1>
+    <p class="sub" data-i18n="over.sub">Der Jackpot wartet trotzdem. In der App tippst du in Sekunden mit.</p>
+    <button class="btn pulse" id="overAgain" type="button" data-i18n="over.again">Nochmal versuchen</button>
+    <a class="btn ghost cta" id="overCta" href="#" rel="noopener" data-i18n="over.cta">Direkt zur App</a>
   </div>
 
   <!-- COMPLIANCE BAND -->
@@ -215,6 +215,9 @@ body{display:flex;align-items:center;justify-content:center}
    CONFIG — the only block a non-dev should need to touch
    ========================================================================== */
 const CONFIG = {
+  LANG: 'auto',            // 'auto' | 'de' | 'en'
+  DIRECT_START: false,  // true = ohne Startscreen direkt ins Spiel (A/B-Test)
+
   CLICK_URL: 'https://lottoscanner.de/app',   // fallback if no ad-network SDK injects its own CTA handler
   TARGET: 120,                                 // Mio. € to collect
   // level progression (Wanja: start small, then "×2 / ×3" level-ups with a colour change; target ≈ 15 s of play)
@@ -228,12 +231,26 @@ const CONFIG = {
   COIN_CHANCE: 0.78,                           // share of platforms that carry a coin
   TURBO_AFTER_S: 26,                           // after this many seconds coins get richer (guarantees a win in ≈ 35–40 s)
   RESCUES: 1,                                  // second chances per run (a first fall never ends a first playthrough)
-  MILESTONES: { 100: 'Endspurt!' },
+  MILESTONES: { 100: 't.final' },
   WIN_TICKS: 150,                              // length of the on-canvas celebration before the CTA screen (2.5 s)
 };
 
 /* ---------- DOM ---------- */
 const $ = id => document.getElementById(id);
+
+/* ---------- Sprache: automatisch nach Browsersprache, ueberschreibbar via CONFIG.LANG ---------- */
+const LANG = CONFIG.LANG === 'auto'
+  ? (String(navigator.language || 'de').toLowerCase().indexOf('de') === 0 ? 'de' : 'en')
+  : CONFIG.LANG;
+const T = ({ de: {"doc.title": "Lotto Scanner – Jump zum Jackpot", "hud.label": "Gesammelt", "hud.goal": "Ziel <b>120 Mio. €</b>", "hud.unit": "Mio. €", "kicker": "Lotto Scanner · Mini-Game", "start.btn": "Los geht's", "start.tap": "Tippe irgendwo, um zu starten", "win.kicker": "Geschafft", "win.h1": "Du hast den Zähler <em>vollgemacht</em>", "win.sub": "Beim echten Eurojackpot zählt kein Geschick, nur Glück. Hol dir die App und tippe mit.", "win.cta": "Jetzt App laden", "luck": "Chance auf den Eurojackpot: 1 : 140 Mio.", "over.kicker": "Fast", "over.h1": "Starke <em id=\"overSum\">0 Mio. €</em> gesammelt", "over.sub": "Der Jackpot wartet trotzdem. In der App tippst du in Sekunden mit.", "over.again": "Nochmal versuchen", "over.cta": "Direkt zur App", "t.final": "Endspurt!", "t.rescue": "Zweite Chance!", "fx.plus120": "+120 Mio. €", "fx.done": "GESCHAFFT!", "fx.sum": "120 Mio. € gesammelt", "unit.mio": " Mio. €", "unit.short": " Mio.", "coin.unit": "MIO €", "start.h1": "Spring dich zu <em>120&nbsp;Mio.&nbsp;€</em>", "start.sub": "Ziehe nach links und rechts, lande auf den Kacheln und sammle die Mio.-Coins.", "tut": "Ziehen zum Steuern", "win.again": "Nochmal springen", "lvl.0": "×1", "lvl.on": "×{m} aktiv", "t.x2": "×2 – alles zählt doppelt!", "t.x3": "×3 – alles zählt dreifach!", "tile.rescue": "ZWEITE CHANCE"},
+             en: {"doc.title": "Lotto Scanner – Jump to the Jackpot", "hud.label": "Collected", "hud.goal": "Goal <b>€120M</b>", "hud.unit": "M €", "kicker": "Lotto Scanner · Mini-Game", "start.btn": "Let's go", "start.tap": "Tap anywhere to start", "win.kicker": "Done", "win.h1": "You <em>filled the counter</em>", "win.sub": "In the real Eurojackpot skill counts for nothing — only luck. Get the app and play along.", "win.cta": "Get the app", "luck": "Odds of winning the Eurojackpot: 1 in 140 million", "over.kicker": "So close", "over.h1": "You collected <em id=\"overSum\">0M €</em>", "over.sub": "The jackpot is still waiting. In the app you can play along in seconds.", "over.again": "Try again", "over.cta": "Straight to the app", "t.final": "Final stretch!", "t.rescue": "Second chance!", "fx.plus120": "+€120M", "fx.done": "NAILED IT!", "fx.sum": "€120M collected", "unit.mio": "M €", "unit.short": "M", "coin.unit": "M €", "start.h1": "Jump your way to <em>€120M</em>", "start.sub": "Drag left and right, land on the tiles and collect the million coins.", "tut": "Drag to steer", "win.again": "Jump again", "lvl.0": "×1", "lvl.on": "×{m} active", "t.x2": "×2 – everything counts double!", "t.x3": "×3 – everything counts triple!", "tile.rescue": "SECOND CHANCE"} })[LANG === 'en' ? 'en' : 'de'];
+document.documentElement.lang = LANG;
+document.title = T['doc.title'];
+[].forEach.call(document.querySelectorAll('[data-i18n]'), function (el) {
+  const v = T[el.getAttribute('data-i18n')];
+  if (v != null) el.innerHTML = v;
+});
+
 const stage = $('stage'), canvas = $('game'), ctx = canvas.getContext('2d');
 const hud = $('hud'), scoreVal = $('scoreVal'), scoreNum = $('scoreNum'), bar = $('bar');
 const combo = $('combo'), toast = $('toast'), tut = $('tut');
@@ -326,10 +343,10 @@ function setLevel(i, announce) {
   const st = document.documentElement.style;
   st.setProperty('--accent', L.accent); st.setProperty('--accent-hi', L.accentHi); st.setProperty('--accent-dk', L.accentDk); st.setProperty('--accent-2', L.accent2);
   C.accent = L.accent; C.accentHi = L.accentHi;
-  const b = $('lvl'); b.textContent = i === 0 ? '×1' : `×${L.mult} aktiv`; b.className = 'lvl l' + (i+1);
+  const b = $('lvl'); b.textContent = i === 0 ? T['lvl.0'] : T['lvl.on'].replace('{m}', L.mult); b.className = 'lvl l' + (i+1);
   if (announce) {
     b.classList.add('pop'); setTimeout(() => b.classList.remove('pop'), 350);
-    showToast(L.mult === 2 ? '×2 – alles zählt doppelt!' : '×3 – alles zählt dreifach!'); Audio.milestone();
+    showToast(L.mult === 2 ? T['t.x2'] : T['t.x3']); Audio.milestone();
     for (const c of coins) if (!c.taken) { c.v = pick(L.values); c.spin = 0; c.s = 1.6; }
     burst(player.x, player.y, 24, true);
   }
@@ -408,7 +425,7 @@ window.addEventListener('keyup', e => {
 });
 function onFirstInput() {
   if (mode !== 'play') return;
-  if (!firstInputSeen) { firstInputSeen = true; tut.classList.remove('on'); }
+  if (!firstInputSeen) { firstInputSeen = true; Audio.unlock(); Audio.music(true); tut.classList.remove('on'); }
 }
 
 /* autopilot: on every landing pick ONE reachable platform above and commit to it for the whole jump —
@@ -528,10 +545,10 @@ function collect(c) {
   if (comboN >= 2) { combo.textContent = '×' + comboN + ' Combo'; combo.classList.add('on'); }
   score += c.v;
   burst(c.x, c.y, 14, false);
-  floaters.push({ x:c.x, y:c.y - 10, text:'+' + c.v + ' Mio.', life:46, max:46, big:false });
+  floaters.push({ x:c.x, y:c.y - 10, text:'+' + c.v + T['unit.short'], life:46, max:46, big:false });
   shake = Math.min(shake + 3, 7); hitstop = 2;
   Audio.coin(Math.min(comboN, 8));
-  for (const k in CONFIG.MILESTONES) if (!milestonesHit[k] && score >= +k && score < CONFIG.TARGET) { milestonesHit[k] = true; showToast(CONFIG.MILESTONES[k]); Audio.milestone(); }
+  for (const k in CONFIG.MILESTONES) if (!milestonesHit[k] && score >= +k && score < CONFIG.TARGET) { milestonesHit[k] = true; showToast(T[CONFIG.MILESTONES[k]] || CONFIG.MILESTONES[k]); Audio.milestone(); }
   if (score >= CONFIG.TARGET) {
     score = CONFIG.TARGET; updateScoreUI(true);
     mode = 'winning'; Audio.duck(true); winT = 0; combo.classList.remove('on'); tut.classList.remove('on'); toast.classList.remove('on'); clearTimeout(toastTimer);
@@ -544,7 +561,7 @@ function rescue() {
   const py = cameraY + H*0.78;
   platforms.push({ x: clamp(player.x, 70, W-70), y: py, w: 150, kind:'rescue', hitT:t, ttl: 75 });
   player.y = py - player.h*0.5 - 2; player.vy = JUMP_VEL; player.vx = 0; apTarget = null;
-  showToast('Zweite Chance!');
+  showToast(T['t.rescue']);
   burst(player.x, py, 24, false);
   shake = 8; Audio.rescue();
 }
@@ -559,7 +576,7 @@ function celebrate() {
     for (let i = 0; i < 26; i++) { const a = Math.random()*6.283, sp = rnd(5, 13);
       parts.push({ x: winPos.x, y: winPos.y, vx: Math.cos(a)*sp, vy: Math.sin(a)*sp - 4, g: 0.22, life: 90, max: 90, s: rnd(9, 14), col: C.yellow, rot: Math.random()*6.283, vr: rnd(-0.25, 0.25), shape: 'coin' }); }
     burst(winPos.x, winPos.y, 70, true); burst(winPos.x, winPos.y - 30, 50, true);
-    floaters.push({ x: winPos.x, y: winPos.y - 60, text: '+120 Mio. €', life: 70, max: 70, big: true });
+    floaters.push({ x: winPos.x, y: winPos.y - 60, text: T['fx.plus120'], life: 70, max: 70, big: true });
   }
   if (winT > 12 && winT % 5 === 0) burst(rnd(20, W-20), cameraY + rnd(-40, H*0.6), 5, true);   // confetti rain
   if (winT === 40) Audio.milestone();
@@ -582,11 +599,11 @@ function drawCelebration() {
     const sc = Math.max(1, e), a = clamp((winT - 16) / 6, 0, 1);
     ctx.save(); ctx.globalAlpha = a; ctx.translate(W/2, H*0.36); ctx.rotate(-6.49 * Math.PI/180); ctx.scale(sc, sc);
     ctx.font = `800 ${Math.min(58, W*0.15)}px ${FONT_HEAD}`; ctx.textAlign = 'center'; ctx.textBaseline = 'middle';
-    const txt = 'GESCHAFFT!', tw = ctx.measureText(txt).width;
+    const txt = T['fx.done'], tw = ctx.measureText(txt).width;
     ctx.shadowColor = 'rgba(0,0,0,.45)'; ctx.shadowBlur = 30; ctx.shadowOffsetY = 12;
     ctx.fillStyle = C.yellow; rr(-tw/2 - 22, -38, tw + 44, 76, 20); ctx.fill(); ctx.shadowColor = 'transparent';
     ctx.fillStyle = C.charcoal; ctx.fillText(txt, 0, 3);
-    ctx.font = `700 ${Math.min(15, W*0.04)}px ${FONT_BODY}`; ctx.fillStyle = C.paper; ctx.fillText('120 Mio. € gesammelt', 0, 62);
+    ctx.font = `700 ${Math.min(15, W*0.04)}px ${FONT_BODY}`; ctx.fillStyle = C.paper; ctx.fillText(T['fx.sum'], 0, 62);
     ctx.restore();
   }
   // soft single flash (no strobe)
@@ -745,7 +762,7 @@ function drawTile(p, sy) {
     ctx.strokeStyle = C.charcoal; ctx.lineWidth = 2.2; ctx.lineCap = 'round'; ctx.lineJoin = 'round';
     for (let i = -1; i <= 1; i++) { const cx = p.x + i*16, cy = y + h/2 + 1; ctx.beginPath(); ctx.moveTo(cx-5, cy+2); ctx.lineTo(cx, cy-3); ctx.lineTo(cx+5, cy+2); ctx.stroke(); }
   } else if (p.kind === 'rescue') {
-    ctx.fillStyle = C.paper; ctx.font = `800 9px ${FONT_HEAD}`; ctx.textAlign = 'center'; ctx.textBaseline = 'middle'; ctx.fillText('ZWEITE CHANCE', p.x, y + h/2 + 0.5);
+    ctx.fillStyle = C.paper; ctx.font = `800 9px ${FONT_HEAD}`; ctx.textAlign = 'center'; ctx.textBaseline = 'middle'; ctx.fillText(T['tile.rescue'], p.x, y + h/2 + 0.5);
   } else if (p.acc) {
     ctx.fillStyle = C.accent; rr(x + 8, y + 4, 22, 4, 2); ctx.fill();
   }
@@ -771,7 +788,7 @@ function drawCoin(cx, cy, c) {
   if (squash > 0.55) {
     ctx.fillStyle = C.charcoal; ctx.textAlign = 'center'; ctx.textBaseline = 'middle';
     ctx.font = `800 ${c.v >= 20 ? 15 : 17}px ${FONT_HEAD}`; ctx.fillText(String(c.v), 0, -2);
-    ctx.font = `700 7px ${FONT_HEAD}`; ctx.fillText('MIO €', 0, 10);
+    ctx.font = `700 7px ${FONT_HEAD}`; ctx.fillText(T['coin.unit'], 0, 10);
   }
   ctx.restore();
 }
@@ -948,7 +965,7 @@ function endGame(reason) {
   Audio.music(false);
   mode = reason; hud.classList.remove('on'); tut.classList.remove('on'); combo.classList.remove('on'); toast.classList.remove('on'); clearTimeout(toastTimer);
   if (reason === 'win') { ovWin.classList.add('on'); countUp(winSum, 120000000, 1400); }
-  else { overSum.textContent = score + ' Mio. €'; ovOver.classList.add('on'); }
+  else { overSum.textContent = score + T['unit.mio']; ovOver.classList.add('on'); }
 }
 function countUp(el, target, ms) {
   const t0 = performance.now();
