@@ -1,0 +1,4 @@
+# Interne Testseite fuer nicht freigegebenes Creative.
+# Vollstaendig aus Suchmaschinen ausgeschlossen.
+User-agent: *
+Disallow: /
