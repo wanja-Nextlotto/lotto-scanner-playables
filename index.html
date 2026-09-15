@@ -74,60 +74,200 @@ h1{font:800 clamp(30px,6vw,42px)/1.05 var(--head);letter-spacing:-.01em;text-wra
 .phones span{font:600 12px/1 var(--body);color:var(--text-dim)}
 footer{font-size:13px;color:var(--text-dim);border-top:1px solid var(--line);padding-top:20px}
 @media (prefers-reduced-motion:reduce){*{transition:none!important}}
+
+/* Sprachumschalter */
+.head-row{display:flex;align-items:flex-start;justify-content:space-between;gap:16px}
+.lang{display:inline-flex;background:var(--surface);border:1px solid var(--line);border-radius:999px;padding:3px;flex:none}
+.lang button{font:800 12px/1 var(--head);letter-spacing:.06em;color:var(--text-dim);background:none;border:0;
+  padding:8px 12px;border-radius:999px;cursor:pointer;transition:background .15s ease,color .15s ease}
+.lang button.on{background:var(--yellow);color:var(--ink)}
+.lang button:focus-visible{outline:2px solid var(--yellow);outline-offset:2px}
 </style>
 </head>
 <body>
 <div class="wrap">
 
   <header>
-    <div class="mark">
-      <span class="tile" aria-hidden="true"><svg viewBox="0 0 1024 1024"><path fill="#1C1C1C" d="M747.377573,747.394219 L747.377573,642.774566 L642.75792,642.774566 L642.75792,747.394219 L538.154913,747.394219 L538.154913,569.546358 C538.154913,552.20685 552.20685,538.154913 569.532486,538.154913 L753.039962,538.154913 C807.69409,538.154913 852,582.460823 852,637.114951 L852,753.053834 C852,807.707962 807.69409,852 753.039962,852 L642.774566,852 L642.774566,747.394219 L747.377573,747.394219 Z M381.225434,538.154913 L381.225434,642.774566 L485.845087,642.774566 L485.845087,753.053834 C485.845087,807.707962 441.539177,852 386.885049,852 L270.960038,852 C216.30591,852 172,807.707962 172,753.053834 L172,637.114951 C172,582.460823 216.30591,538.154913 270.960038,538.154913 L381.225434,538.154913 Z M753.039962,172 C807.69409,172 852,216.30591 852,270.960038 L852,381.239306 L747.391444,381.239306 L747.391444,276.619653 L642.771792,276.619653 L642.771792,381.239306 L747.380347,381.239306 L747.380347,485.845087 L569.532486,485.845087 C552.20685,485.845087 538.154913,471.79315 538.154913,454.467514 L538.154913,270.960038 C538.154913,216.30591 582.460823,172 637.114951,172 L753.039962,172 Z M386.885049,172 C441.539177,172 485.845087,216.30591 485.845087,270.960038 L485.845087,454.467514 C485.845087,471.79315 471.79315,485.845087 454.467514,485.845087 L270.960038,485.845087 C216.30591,485.845087 172,441.553049 172,386.898921 L172,276.619653 L276.603007,276.619653 L276.603007,381.239306 L381.22266,381.239306 L381.22266,276.619653 L276.619653,276.619653 L276.619653,172 L386.885049,172 Z"/></svg></span>
-      <span class="who">Lotto Scanner · 120 Mio. Kampagne</span>
+    <div class="head-row">
+      <div class="mark">
+        <span class="tile" aria-hidden="true"><svg viewBox="0 0 1024 1024"><path fill="#1C1C1C" d="M747.377573,747.394219 L747.377573,642.774566 L642.75792,642.774566 L642.75792,747.394219 L538.154913,747.394219 L538.154913,569.546358 C538.154913,552.20685 552.20685,538.154913 569.532486,538.154913 L753.039962,538.154913 C807.69409,538.154913 852,582.460823 852,637.114951 L852,753.053834 C852,807.707962 807.69409,852 753.039962,852 L642.774566,852 L642.774566,747.394219 L747.377573,747.394219 Z M381.225434,538.154913 L381.225434,642.774566 L485.845087,642.774566 L485.845087,753.053834 C485.845087,807.707962 441.539177,852 386.885049,852 L270.960038,852 C216.30591,852 172,807.707962 172,753.053834 L172,637.114951 C172,582.460823 216.30591,538.154913 270.960038,538.154913 L381.225434,538.154913 Z M753.039962,172 C807.69409,172 852,216.30591 852,270.960038 L852,381.239306 L747.391444,381.239306 L747.391444,276.619653 L642.771792,276.619653 L642.771792,381.239306 L747.380347,381.239306 L747.380347,485.845087 L569.532486,485.845087 C552.20685,485.845087 538.154913,471.79315 538.154913,454.467514 L538.154913,270.960038 C538.154913,216.30591 582.460823,172 637.114951,172 L753.039962,172 Z M386.885049,172 C441.539177,172 485.845087,216.30591 485.845087,270.960038 L485.845087,454.467514 C485.845087,471.79315 471.79315,485.845087 454.467514,485.845087 L270.960038,485.845087 C216.30591,485.845087 172,441.553049 172,386.898921 L172,276.619653 L276.603007,276.619653 L276.603007,381.239306 L381.22266,381.239306 L381.22266,276.619653 L276.619653,276.619653 L276.619653,172 L386.885049,172 Z"/></svg></span>
+        <span class="who" data-i18n="who">Lotto Scanner · 120 Mio. Kampagne</span>
+      </div>
+      <div class="lang" role="group" aria-label="Sprache / Language">
+        <button type="button" data-lang="de">DE</button>
+        <button type="button" data-lang="en">EN</button>
+      </div>
     </div>
-    <h1>Playable Ads testen</h1>
-    <p class="lede">Vier Minispiele für Meta und Moloco. Tippe eins an, es öffnet sich direkt im Browser und ist sofort spielbar. Ziel ist in allen vieren dasselbe: <b>120 Mio. € sammeln</b>, dann kommt der CTA-Screen.</p>
+    <h1 data-i18n="h1">Playable Ads testen</h1>
+    <p class="lede" data-i18n="lede">Vier Minispiele für Meta und Moloco. Tippe eins an, es öffnet sich direkt im Browser und ist sofort spielbar. Ziel ist in allen vieren dasselbe: <b>120 Mio. € sammeln</b>, dann kommt der CTA-Screen.</p>
   </header>
 
   <div class="games">
-    <a class="game" href="01_LS-Playable_Jump.html">
-      <div class="top"><h2>Jump</h2><span class="dur">ca. 15 Sek.</span></div>
-      <p>Von Kachel zu Kachel nach oben. Ab 6 Mio. liegt ein ×2-Badge bereit, das man einsammeln muss, später ein ×3. Danach zählt jeder Coin doppelt bzw. dreifach.</p>
-      <span class="ctrl">Ziehen nach links und rechts</span>
-      <span class="open">Spielen <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
-    </a>
-    <a class="game" href="02_LS-Playable_Runner.html">
-      <div class="top"><h2>Runner</h2><span class="dur">ca. 15 Sek.</span></div>
-      <p>Drei Spuren durch die nächtliche Stadt. Über Pylonen springen, Absperrungen und Lieferwagen ausweichen, Turbo-Pads mitnehmen.</p>
-      <span class="ctrl">Wischen für die Spur, Tippen für den Sprung</span>
-      <span class="open">Spielen <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
-    </a>
-    <a class="game" href="03_LS-Playable_Crossing.html">
-      <div class="top"><h2>Straße</h2><span class="dur">ca. 10 Sek.</span></div>
-      <p>Über die befahrene Straße, drei Lottoscheine unterwegs scannen und heil auf der anderen Seite ankommen. Autos sind tabu.</p>
-      <span class="ctrl">Tippen für vorwärts, Wischen zur Seite</span>
-      <span class="open">Spielen <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
-    </a>
-    <a class="game" href="04_LS-Playable_Scan.html">
-      <div class="top"><h2>Scanner</h2><span class="dur">ca. 15 Sek.</span></div>
-      <p>Der Scanner saugt die fallenden Lottoscheine ein. Kaffeebecher und Regenwolke lässt man besser durch, die machen den Schein kaputt.</p>
-      <span class="ctrl">Ziehen nach links und rechts</span>
-      <span class="open">Spielen <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
-    </a>
+      <a class="game" href="01_LS-Playable_Jump.html">
+        <div class="top"><h2 data-i18n="jump.name">Jump</h2><span class="dur" data-i18n="jump.dur">ca. 15 Sek.</span></div>
+        <p data-i18n="jump.text">Von Kachel zu Kachel nach oben. Ab 6 Mio. liegt ein ×2-Badge bereit, das man einsammeln muss, später ein ×3. Danach zählt jeder Coin doppelt bzw. dreifach.</p>
+        <span class="ctrl" data-i18n="jump.ctrl">Ziehen nach links und rechts</span>
+        <span class="open"><span data-i18n="play">Spielen</span> <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+      </a>
+      <a class="game" href="02_LS-Playable_Runner.html">
+        <div class="top"><h2 data-i18n="runner.name">Runner</h2><span class="dur" data-i18n="runner.dur">ca. 15 Sek.</span></div>
+        <p data-i18n="runner.text">Drei Spuren durch die nächtliche Stadt. Über Pylonen springen, Absperrungen und Lieferwagen ausweichen, Turbo-Pads mitnehmen.</p>
+        <span class="ctrl" data-i18n="runner.ctrl">Wischen für die Spur, Tippen für den Sprung</span>
+        <span class="open"><span data-i18n="play">Spielen</span> <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+      </a>
+      <a class="game" href="03_LS-Playable_Crossing.html">
+        <div class="top"><h2 data-i18n="crossing.name">Straße</h2><span class="dur" data-i18n="crossing.dur">ca. 10 Sek.</span></div>
+        <p data-i18n="crossing.text">Über die befahrene Straße, drei Lottoscheine unterwegs scannen und heil auf der anderen Seite ankommen. Autos sind tabu.</p>
+        <span class="ctrl" data-i18n="crossing.ctrl">Tippen für vorwärts, Wischen zur Seite</span>
+        <span class="open"><span data-i18n="play">Spielen</span> <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+      </a>
+      <a class="game" href="04_LS-Playable_Scan.html">
+        <div class="top"><h2 data-i18n="scan.name">Scanner</h2><span class="dur" data-i18n="scan.dur">ca. 15 Sek.</span></div>
+        <p data-i18n="scan.text">Der Scanner saugt die fallenden Lottoscheine ein. Kaffeebecher und Regenwolke lässt man besser durch, die machen den Schein kaputt.</p>
+        <span class="ctrl" data-i18n="scan.ctrl">Ziehen nach links und rechts</span>
+        <span class="open"><span data-i18n="play">Spielen</span> <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+      </a>
   </div>
 
-  <div class="note status">
-    <h3>Interner Test, nicht freigegeben</h3>
-    <p>Diese Seite dient ausschließlich dem internen Abstimmen der Prototypen. <b>Nichts davon ist freigegeben und nichts ist geschaltet.</b> Die Freigabe läuft über Claudius, danach folgt die Notion-Zeile im Creative Tracking. Bitte nicht extern weiterleiten und nicht in sozialen Netzen teilen.</p>
-    <p>Die Spiele selbst sind vollständig compliance-gebaut: Pflichthinweis-Band auf jedem Screen, 18+, Gewinnchance 1:140 Mio., Hinweis auf den Zufallscharakter im Gewinn-Screen und kein Gewinnversprechen im Text.</p>
+  <div class="note">
+    <h3 data-i18n="phone.h">Am Handy testen</h3>
+    <p data-i18n="phone.p1">Dafür gibt es eine eigene Adresse. Die öffnet sich im Handy-Browser, ohne Anmeldung, und verhält sich wie später die Anzeige:</p>
+    <div class="phones">
+      <a href="https://wanja-nextlotto.github.io/lotto-scanner-playables/">wanja-nextlotto.github.io/lotto-scanner-playables <span data-i18n="phone.link">alle vier Spiele</span></a>
+    </div>
+    <p data-i18n="phone.p2">Die Adresse darf im Team geteilt werden, aber bitte nicht extern und nicht in sozialen Netzen — es ist unfreigegebenes Material.</p>
   </div>
 
   <div class="note warn">
-    <h3>Feedback</h3>
-    <p>Gesucht ist vor allem der erste Eindruck: Spielgefühl, Tempo, Verständlichkeit der Steuerung und ob man bis zum Ende dranbleibt. Rückmeldungen gehen an Wanja.</p>
+    <h3 data-i18n="local.h">Falls nichts passiert</h3>
+    <ul>
+      <li data-i18n="local.1"><b>Aus dem Drive-Ordner am Rechner:</b> Datei doppelklicken, dann läuft alles. Kein Server und kein Internet nötig.</li>
+      <li class="no" data-i18n="local.2"><b>Direkt in drive.google.com angeklickt:</b> funktioniert nicht. Die Drive-Vorschau führt kein JavaScript aus, der Start-Button reagiert dann nicht. Erst herunterladen, dann öffnen.</li>
+      <li class="no" data-i18n="local.3"><b>Per WhatsApp oder Slack verschickt:</b> funktioniert aus demselben Grund nicht. Verschick stattdessen die Adresse oben, die läuft am Handy.</li>
+    </ul>
   </div>
 
-  <footer>Stand 15.09.2026 · Next Lotto GmbH, internes Material</footer>
+  <div class="note status">
+    <h3 data-i18n="status.h">Interner Test, nicht freigegeben</h3>
+    <p data-i18n="status.p1">Diese Seite dient ausschließlich dem internen Abstimmen der Prototypen. <b>Nichts davon ist freigegeben und nichts ist geschaltet.</b> Die Freigabe läuft über Claudius, danach folgt die Notion-Zeile im Creative Tracking.</p>
+    <p data-i18n="status.p2">Die Spiele selbst sind vollständig compliance-gebaut: Pflichthinweis-Band auf jedem Screen, 18+, Gewinnchance 1:140 Mio., Hinweis auf den Zufallscharakter im Gewinn-Screen und kein Gewinnversprechen im Text.</p>
+  </div>
+
+  <div class="note">
+    <h3 data-i18n="fb.h">Feedback</h3>
+    <p data-i18n="fb.p">Gesucht ist vor allem der erste Eindruck: Spielgefühl, Tempo, Verständlichkeit der Steuerung und ob man bis zum Ende dranbleibt. Rückmeldungen gehen an Wanja.</p>
+  </div>
+
+  <footer data-i18n="foot">Alle vier mit Themensong und Spielgeräuschen, Ton lässt sich im Spiel oben rechts abschalten. Stand 15.09.2026 · Next Lotto GmbH, internes Material</footer>
 
 </div>
+
+<script>
+/* Zweisprachig DE/EN. Deutsch steht im HTML, damit nichts flackert; Englisch
+   wird beim Laden eingesetzt, wenn der Browser nicht auf Deutsch steht.
+   Die Wahl merkt sich die Seite pro Geraet. */
+(function () {
+  var T = { de: {
+  "title": "Lotto Scanner · Playable Ads (interner Test)",
+  "who": "Lotto Scanner · 120 Mio. Kampagne",
+  "h1": "Playable Ads testen",
+  "lede": "Vier Minispiele für Meta und Moloco. Tippe eins an, es öffnet sich direkt im Browser und ist sofort spielbar. Ziel ist in allen vieren dasselbe: <b>120 Mio. € sammeln</b>, dann kommt der CTA-Screen.",
+  "play": "Spielen",
+  "jump.name": "Jump",
+  "jump.dur": "ca. 15 Sek.",
+  "jump.text": "Von Kachel zu Kachel nach oben. Ab 6 Mio. liegt ein ×2-Badge bereit, das man einsammeln muss, später ein ×3. Danach zählt jeder Coin doppelt bzw. dreifach.",
+  "jump.ctrl": "Ziehen nach links und rechts",
+  "runner.name": "Runner",
+  "runner.dur": "ca. 15 Sek.",
+  "runner.text": "Drei Spuren durch die nächtliche Stadt. Über Pylonen springen, Absperrungen und Lieferwagen ausweichen, Turbo-Pads mitnehmen.",
+  "runner.ctrl": "Wischen für die Spur, Tippen für den Sprung",
+  "crossing.name": "Straße",
+  "crossing.dur": "ca. 10 Sek.",
+  "crossing.text": "Über die befahrene Straße, drei Lottoscheine unterwegs scannen und heil auf der anderen Seite ankommen. Autos sind tabu.",
+  "crossing.ctrl": "Tippen für vorwärts, Wischen zur Seite",
+  "scan.name": "Scanner",
+  "scan.dur": "ca. 15 Sek.",
+  "scan.text": "Der Scanner saugt die fallenden Lottoscheine ein. Kaffeebecher und Regenwolke lässt man besser durch, die machen den Schein kaputt.",
+  "scan.ctrl": "Ziehen nach links und rechts",
+  "phone.h": "Am Handy testen",
+  "phone.p1": "Dafür gibt es eine eigene Adresse. Die öffnet sich im Handy-Browser, ohne Anmeldung, und verhält sich wie später die Anzeige:",
+  "phone.link": "alle vier Spiele",
+  "phone.p2": "Die Adresse darf im Team geteilt werden, aber bitte nicht extern und nicht in sozialen Netzen — es ist unfreigegebenes Material.",
+  "local.h": "Falls nichts passiert",
+  "local.1": "<b>Aus dem Drive-Ordner am Rechner:</b> Datei doppelklicken, dann läuft alles. Kein Server und kein Internet nötig.",
+  "local.2": "<b>Direkt in drive.google.com angeklickt:</b> funktioniert nicht. Die Drive-Vorschau führt kein JavaScript aus, der Start-Button reagiert dann nicht. Erst herunterladen, dann öffnen.",
+  "local.3": "<b>Per WhatsApp oder Slack verschickt:</b> funktioniert aus demselben Grund nicht. Verschick stattdessen die Adresse oben, die läuft am Handy.",
+  "status.h": "Interner Test, nicht freigegeben",
+  "status.p1": "Diese Seite dient ausschließlich dem internen Abstimmen der Prototypen. <b>Nichts davon ist freigegeben und nichts ist geschaltet.</b> Die Freigabe läuft über Claudius, danach folgt die Notion-Zeile im Creative Tracking.",
+  "status.p2": "Die Spiele selbst sind vollständig compliance-gebaut: Pflichthinweis-Band auf jedem Screen, 18+, Gewinnchance 1:140 Mio., Hinweis auf den Zufallscharakter im Gewinn-Screen und kein Gewinnversprechen im Text.",
+  "fb.h": "Feedback",
+  "fb.p": "Gesucht ist vor allem der erste Eindruck: Spielgefühl, Tempo, Verständlichkeit der Steuerung und ob man bis zum Ende dranbleibt. Rückmeldungen gehen an Wanja.",
+  "foot": "Alle vier mit Themensong und Spielgeräuschen, Ton lässt sich im Spiel oben rechts abschalten. Stand 15.09.2026 · Next Lotto GmbH, internes Material"
+}, en: {
+  "title": "Lotto Scanner · Playable Ads (internal test)",
+  "who": "Lotto Scanner · 120M campaign",
+  "h1": "Test the playable ads",
+  "lede": "Four mini-games for Meta and Moloco. Tap one, it opens straight in the browser and is playable right away. All four share the same goal: <b>collect €120M</b>, then the CTA screen appears.",
+  "play": "Play",
+  "jump.name": "Jump",
+  "jump.dur": "approx. 15 sec.",
+  "jump.text": "Hop your way up from tile to tile. From €6M a ×2 badge appears that you have to grab, later a ×3. After that every coin counts double or triple.",
+  "jump.ctrl": "Drag left and right",
+  "runner.name": "Runner",
+  "runner.dur": "approx. 15 sec.",
+  "runner.text": "Three lanes through the night-time city. Jump the cones, dodge the barriers and delivery vans, grab the boost pads.",
+  "runner.ctrl": "Swipe to change lane, tap to jump",
+  "crossing.name": "Crossing",
+  "crossing.dur": "approx. 10 sec.",
+  "crossing.text": "Cross the busy road, scan three lottery tickets on the way and make it to the other side in one piece. Cars are off limits.",
+  "crossing.ctrl": "Tap to move forward, swipe sideways",
+  "scan.name": "Scanner",
+  "scan.dur": "approx. 15 sec.",
+  "scan.text": "The scanner sucks in the falling lottery tickets. Better let the coffee cup and the rain cloud pass — they ruin the ticket.",
+  "scan.ctrl": "Drag left and right",
+  "phone.h": "Testing on your phone",
+  "phone.p1": "There is a dedicated address for that. It opens in your phone browser, no sign-in, and behaves the way the real ad will:",
+  "phone.link": "all four games",
+  "phone.p2": "Feel free to share the address inside the team, but please not externally and not on social media — this material is not approved yet.",
+  "local.h": "If nothing happens",
+  "local.1": "<b>From the Drive folder on your computer:</b> double-click the file and it runs. No server and no internet needed.",
+  "local.2": "<b>Clicked directly inside drive.google.com:</b> that does not work. The Drive preview does not run JavaScript, so the start button stays dead. Download the file first, then open it.",
+  "local.3": "<b>Sent via WhatsApp or Slack:</b> same reason, does not work. Send the address above instead, that one runs on a phone.",
+  "status.h": "Internal test, not approved",
+  "status.p1": "This page exists purely for reviewing the prototypes internally. <b>None of this is approved and nothing is running as an ad.</b> Sign-off goes through Claudius, after that the entry in Creative Tracking follows.",
+  "status.p2": "The games themselves are built compliance-first: the mandatory notice bar on every screen, 18+, odds of 1 in 140 million, a note on the random nature of the draw on the win screen, and no promise of winning anywhere in the copy.",
+  "fb.h": "Feedback",
+  "fb.p": "What matters most is your first impression: how it feels to play, the pace, whether the controls are obvious and whether you stay until the end. Send your thoughts to Wanja.",
+  "foot": "All four come with a theme loop and sound effects; audio can be switched off at the top right inside each game. Updated 15 Sept 2026 · Next Lotto GmbH, internal material"
+} };
+  var buttons = [].slice.call(document.querySelectorAll('.lang button'));
+
+  function setLang(l) {
+    if (l !== 'de' && l !== 'en') l = 'de';
+    var dict = T[l];
+    document.documentElement.lang = l;
+    document.title = dict.title;
+    [].forEach.call(document.querySelectorAll('[data-i18n]'), function (el) {
+      var v = dict[el.getAttribute('data-i18n')];
+      if (v != null) el.innerHTML = v;
+    });
+    buttons.forEach(function (b) {
+      var on = b.getAttribute('data-lang') === l;
+      b.classList.toggle('on', on);
+      b.setAttribute('aria-pressed', on ? 'true' : 'false');
+    });
+    try { localStorage.setItem('ls-playables-lang', l); } catch (e) {}
+  }
+
+  var saved = null;
+  try { saved = localStorage.getItem('ls-playables-lang'); } catch (e) {}
+  var auto = String(navigator.language || navigator.userLanguage || 'de').toLowerCase().indexOf('de') === 0 ? 'de' : 'en';
+  setLang(saved || auto);
+
+  buttons.forEach(function (b) {
+    b.addEventListener('click', function () { setLang(b.getAttribute('data-lang')); });
+  });
+})();
+</script>
 </body>
 </html>
