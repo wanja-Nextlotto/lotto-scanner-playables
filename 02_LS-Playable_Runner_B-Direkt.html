@@ -849,6 +849,17 @@ function drawSky() {
   ctx.fillStyle = sky; ctx.fillRect(-20, -20, W+40, HORIZON_Y+20);
   ctx.save(); ctx.beginPath(); ctx.rect(-20, -20, W+40, HORIZON_Y+20); ctx.clip();
   drawLayer(bgFar, 0.12); drawLayer(bgNear, 0.35);
+  // Sternschnuppe: duenner Paper-Streifen, blendet weich ein und aus (kein Strobo)
+  if (star) {
+    const k = star.life/star.max, a = Math.sin(k*3.1416)*0.8;
+    const sg = ctx.createLinearGradient(star.x, star.y, star.x - star.vx*7, star.y - star.vy*7); sg.addColorStop(0, `rgba(252,251,250,${a})`); sg.addColorStop(1, 'rgba(252,251,250,0)');
+    ctx.strokeStyle = sg; ctx.lineWidth = 1.6; ctx.lineCap = 'round'; ctx.beginPath(); ctx.moveTo(star.x, star.y); ctx.lineTo(star.x - star.vx*7, star.y - star.vy*7); ctx.stroke();
+  }
+  // WICHTIG: Der Sky-Clip von oben muss hier wieder weg. Fehlt dieses restore,
+  // bleibt alles unterhalb des Horizonts abgeschnitten -> Strasse, Hindernisse und
+  // Spieler unsichtbar, und der State-Stack laeuft pro Frame um eine Ebene voll.
+  // (Beim Entfernen des Mondes am 15.09.2026 versehentlich mitgeloescht, gemeldet 16.09.2026)
+  ctx.restore();
   // horizon glow: yellow core → violet halo, intensifies with the score (and near the win)
   const sk = clamp(score/CONFIG.TARGET, 0, 1), nk = score >= 80 ? clamp((score-80)/40, 0, 1) : 0;
   const gr = W*0.62;
